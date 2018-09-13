@@ -56,3 +56,47 @@ class BetterRandomAgent(Agent):
         else:
             print("list empty")
             return Directions.STOP
+
+class ReflexAgent(Agent):
+    "An agent that chooses a random direction with each step but does not choose stop."
+    def getAction(self, state):
+
+        if len(state.getLegalPacmanActions()) > 0:
+            
+            for x in state.getLegalPacmanActions():
+
+                newX = state.getPacmanPosition()[0]
+                newY = state.getPacmanPosition()[1]
+
+                if(x == Directions.NORTH):
+                    newY += 1; 
+                elif(x == Directions.SOUTH):
+                    newY -= 1;
+                elif(x == Directions.WEST):
+                    newX -= 1;
+                elif(x == Directions.EAST):
+                    newX += 1;
+                else:
+                    continue
+
+                if(state.hasFood(newX,newY)):
+                    return x
+                else:
+                    continue
+        
+            modifiedList = [];
+            for x in state.getLegalPacmanActions():
+                if(x != Directions.STOP):
+                    modifiedList.append(x)
+
+            secure_random = random.SystemRandom()
+            randomDirection = secure_random.choice(modifiedList)
+
+            return randomDirection
+
+        else:
+            return Directions.STOP
+
+
+
+
