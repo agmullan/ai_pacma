@@ -19,7 +19,7 @@ class DumbAgent(Agent):
 #return Directions.WEST
 
 class RandomAgent(Agent):
-    "An agent that choices a random direction"
+    "An agent that choices a random direction with each step"
     def getAction(self, state):
         "The agent receives a GameState (defined in pacman.py)."
         print("Location:", state.getPacmanPosition())
@@ -36,7 +36,7 @@ class RandomAgent(Agent):
         return Directions.STOP
 
 class BetterRandomAgent(Agent):
-    "An agent that chooses a random direction with each step but does not choose stop."
+    "An agent that chooses a random direction with each step excluding stop."
     def getAction(self, state):
         "The agent receives a GameState (defined in pacman.py)."
         print("Location:", state.getPacmanPosition())
@@ -58,7 +58,9 @@ class BetterRandomAgent(Agent):
             return Directions.STOP
 
 class ReflexAgent(Agent):
-    "An agent that chooses a random direction with each step but does not choose stop."
+    "An agent that chooses whichever move will get it to an ajacent piece of food."
+    "If there are no adjacent food pellets, it will choose a random direction."
+    
     def getAction(self, state):
 
         if len(state.getLegalPacmanActions()) > 0:
