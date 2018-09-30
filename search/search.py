@@ -140,7 +140,56 @@ def depthFirstSearch(problem):
 def breadthFirstSearch(problem):
   "Search the shallowest nodes in the search tree first. [p 74]"
   "*** YOUR CODE HERE ***"
-  util.raiseNotDefined()
+  from util import Queue
+  from searchAgents import node
+
+  # initialize the frontier using the initial state of the problem
+  frontier = Queue()
+  initialState = problem.getStartState()
+  root_node = node(initialState, None ,0,0,0)
+  frontier.push(root_node)
+
+  # initialize explored to empty
+  explored = dict()
+
+  # path of solution
+  path = list()
+  while True:
+      #No solution found return empty set
+      if frontier.isEmpty():
+          return []
+
+      #Dequeue first node in frontier
+      cur_node = frontier.pop()
+
+      #Solution found
+      if problem.isGoalState(cur_node.getCurrentState()):
+          node = cur_node
+
+          while(node.getParentNode() != None):
+              path.append(node.getLastAction())
+              node = node.getParentNode()
+          # path.append(cur_node.getLastAction())
+          path.reverse()
+          return path
+
+      #put cur_node in explored
+      explored[cur_node.getCurrentState()] = "True"
+
+      # for every child of cur_node Enqueue to frontier
+      for successor in problem.getSuccessors(cur_node.getCurrentState()):
+          child = node(successor[0], cur_node, successor[1], successor[2], 1)
+          # if the child has not been visited
+          if(child.getCurrentState() not in explored):
+              # if the child is in the goal state append the parent which is the cur_node
+              # if problem.isGoalState(child.getCurrentState()):
+              #     path.append(child.getLastAction())
+              #     explored[child.getCurrentState()] = "True"
+              # add children to frontier
+              frontier.push(child)
+
+
+  #util.raiseNotDefined()
       
 def uniformCostSearch(problem):
   "Search the node of least total cost first. "
