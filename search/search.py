@@ -67,8 +67,18 @@ def tinyMazeSearch(problem):
   w = Directions.WEST
   return  [s,s,w,s,w,w,s,w]
 
-def depthFirstSearch(problem):
+def tinyMazeSearch(problem):
   """
+  Returns a sequence of moves that solves tinyMaze.  For any other
+  maze, the sequence of moves will be incorrect, so only use this for tinyMaze
+  """
+  from game import Directions
+  s = Directions.SOUTH
+  w = Directions.WEST
+  return  [s,s,w,s,w,w,s,w]
+
+def depthFirstSearch(problem):
+    """
   Search the deepest nodes in the search tree first [p 74].
   
   Your search algorithm needs to return a list of actions that reaches
@@ -81,8 +91,51 @@ def depthFirstSearch(problem):
   print "Is the start a goal?", problem.isGoalState(problem.getStartState())
   print "Start's successors:", problem.getSuccessors(problem.getStartState())
   """
-  "*** YOUR CODE HERE ***"
-  util.raiseNotDefined()
+  from util import Stack
+  from searchAgents import node
+
+  #initialize frontier
+  frontier = Stack()
+  initialState = problem.getStartState()
+  currentNode = node(initialState, None ,0,0,0) #create the root node and add it to the frontier
+  frontier.push(currentNode)
+
+  #initialize the explored set
+  explored = dict()
+
+  #run the solution search
+  while True:
+
+    #no solution
+    if(frontier.isEmpty()): 
+      return [] 
+
+    current = frontier.pop() #keep track of the current node
+
+    #solution found
+    if (problem.isGoalState(current.getCurrentState())): 
+      solution = list()
+      step = current
+    
+      while(step.getParentNode() != None):
+          solution.append(step.getLastAction())
+          step = step.getParentNode()
+
+      solution.reverse()
+
+      return solution #return list of actions from start state to goal state
+
+    #add current node to the explored set
+    explored[current.getCurrentState()] = "True"
+
+    #expand the current node
+    for successor in problem.getSuccessors(current.getCurrentState()):
+      s = node(successor[0], current, successor[1], successor[2], 1) 
+
+      if(s.getCurrentState() in explored):
+        print("") #do nothing
+      else:
+        frontier.push(s)
 
 def breadthFirstSearch(problem):
   "Search the shallowest nodes in the search tree first. [p 74]"
