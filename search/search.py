@@ -180,16 +180,9 @@ def breadthFirstSearch(problem):
       for successor in problem.getSuccessors(cur_node.getCurrentState()):
           child = node(successor[0], cur_node, successor[1], successor[2], 1)
           # if the child has not been visited
-          if(child.getCurrentState() not in explored):
-              # if the child is in the goal state append the parent which is the cur_node
-              # if problem.isGoalState(child.getCurrentState()):
-              #     path.append(child.getLastAction())
-              #     explored[child.getCurrentState()] = "True"
+          if(child.getCurrentState() not in explored): 
               # add children to frontier
               frontier.push(child)
-
-
-  #util.raiseNotDefined()
       
 def uniformCostSearch(problem):
   "Search the node of least total cost first. "
