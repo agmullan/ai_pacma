@@ -44,34 +44,34 @@ class node:
         self.stepCost = stepCost
         self.totalPathCost = totalPathCost
 
-  def get_current_state(self):
+  def getCurrentState(self):
     return self.currentState
 
-  def set_current_state(self, currentState):
+  def setCurrentState(self, currentState):
     self.currentState = currentState
 
-  def getparentNode(self):
+  def getParentNode(self):
     return self.parentNode
 
-  def setparentNode(self, parentNode):
+  def setParentNode(self, parentNode):
     self.parentNode = parentNode
 
-  def getlastAction(self):
+  def getLastAction(self):
     return self.lastAction
 
-  def setlastAction(self, lastAction):
+  def setLastAction(self, lastAction):
     self.lastAction = lastAction
 
-  def getstepCost(self):
+  def getStepCost(self):
     return self.stepCost
 
-  def setstepCost(self, stepCost):
+  def setStepCost(self, stepCost):
     self.stepCost = stepCost
 
-  def gettotalPathCost(self):
+  def getTotalPathCost(self):
     return self.totalPathCost
 
-  def set_current_state(self, totalPathCost):
+  def setTotalPathCost(self, totalPathCost):
     self.totalPathCost = totalPathCost
 
 class GoWestAgent(Agent):
