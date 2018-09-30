@@ -44,31 +44,31 @@ class node:
         self.stepCost = stepCost
         self.totalPathCost = totalPathCost
 
-  def get_current_state:
+  def get_current_state(self):
     return self.currentState
 
   def set_current_state(self, currentState):
     self.currentState = currentState
 
-  def getparentNode:
+  def getparentNode(self):
     return self.parentNode
 
   def setparentNode(self, parentNode):
     self.parentNode = parentNode
 
-  def getlastAction:
+  def getlastAction(self):
     return self.lastAction
 
   def setlastAction(self, lastAction):
     self.lastAction = lastAction
 
-  def getstepCost:
+  def getstepCost(self):
     return self.stepCost
 
   def setstepCost(self, stepCost):
     self.stepCost = stepCost
 
-  def gettotalPathCost:
+  def gettotalPathCost(self):
     return self.totalPathCost
 
   def set_current_state(self, totalPathCost):
