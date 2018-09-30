@@ -37,7 +37,7 @@ import search
 import searchAgents
 
 class node:
-  def _init_(self, currentState, parentNode, lastAction, stepCost, totalPathCost):
+  def __init__(self, currentState, parentNode, lastAction, stepCost, totalPathCost):
         self.currentState = currentState
         self.parentNode = parentNode
         self.lastAction = lastAction
