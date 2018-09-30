@@ -36,6 +36,44 @@ import time
 import search
 import searchAgents
 
+class node:
+  def _init_(self, currentState, parentNode, lastAction, stepCost, totalPathCost):
+        self.currentState = currentState
+        self.parentNode = parentNode
+        self.lastAction = lastAction
+        self.stepCost = stepCost
+        self.totalPathCost = totalPathCost
+
+  def get_current_state:
+    return self.currentState
+
+  def set_current_state(self, currentState):
+    self.currentState = currentState
+
+  def getparentNode:
+    return self.parentNode
+
+  def setparentNode(self, parentNode):
+    self.parentNode = parentNode
+
+  def getlastAction:
+    return self.lastAction
+
+  def setlastAction(self, lastAction):
+    self.lastAction = lastAction
+
+  def getstepCost:
+    return self.stepCost
+
+  def setstepCost(self, stepCost):
+    self.stepCost = stepCost
+
+  def gettotalPathCost:
+    return self.totalPathCost
+
+  def set_current_state(self, totalPathCost):
+    self.totalPathCost = totalPathCost
+
 class GoWestAgent(Agent):
   "An agent that goes West until it can't."
   
