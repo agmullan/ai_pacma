@@ -215,6 +215,7 @@ def aStarSearch(problem, heuristic=nullHeuristic):
             solution = list()
             step = current
 
+            #collect the path
             while(step.getParentNode() != None):
                 solution.append(step.getLastAction())
                 step = step.getParentNode()
@@ -227,22 +228,15 @@ def aStarSearch(problem, heuristic=nullHeuristic):
         explored[current.getCurrentState()] = "True"
 
         for successor in problem.getSuccessors(current.getCurrentState()):
+
+            #calculate step cost and total path cost
             myStepCost = successor[2]
             myTotalPathCost = current.getTotalPathCost() + myStepCost
             child = node(successor[0], current, successor[1], myStepCost, myTotalPathCost)
 
-
-
+            #add the current node's child to the frontier
             if(child.getCurrentState() not in explored):
                 frontier.push(child, child.getTotalPathCost() + heuristic(child.getCurrentState(), problem))
-
-
-
-
-
-
-
-
 
 # Abbreviations
 bfs = breadthFirstSearch
