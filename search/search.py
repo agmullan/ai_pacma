@@ -176,7 +176,51 @@ def breadthFirstSearch(problem):
 def uniformCostSearch(problem):
   "Search the node of least total cost first. "
   "*** YOUR CODE HERE ***"
-  util.raiseNotDefined()
+  from util import PriorityQueue
+  from searchAgents import node
+  # initialize the frontier using the initial state of the problem
+  frontier = PriorityQueue()
+  initialState = problem.getStartState()
+  root_node = node(initialState, None ,0,0,0)
+  frontier.push(root_node, root_node.getTotalPathCost())
+
+  # initialize explored to empty
+  explored = dict()
+
+  # path of solution
+  path = list()
+  while True:
+      #No solution found return empty set
+      if frontier.isEmpty():
+          return []
+
+      #Dequeue first node in frontier
+      cur_node = frontier.pop()
+
+      #Solution found
+      if problem.isGoalState(cur_node.getCurrentState()):
+          node = cur_node
+
+          while(node.getParentNode() != None):
+              path.append(node.getLastAction())
+              node = node.getParentNode()
+          # path.append(cur_node.getLastAction())
+          path.reverse()
+          return path
+
+      #put cur_node in explored
+      explored[cur_node.getCurrentState()] = "True"
+
+      # for every child of cur_node Enqueue to frontier
+      for successor in problem.getSuccessors(cur_node.getCurrentState()):
+          #calculate step cost and total path cost
+          stepCost = successor[2]
+          totalPathCost = cur_node.getTotalPathCost() + stepCost
+          child = node(successor[0], cur_node, successor[1], stepCost, totalPathCost)
+          # if the child has not been visited
+          if(child.getCurrentState() not in explored):
+              frontier.push(child, child.getTotalPathCost())
+  #util.raiseNotDefined()
 
 def nullHeuristic(state, problem=None):
   """
