@@ -220,6 +220,7 @@ def uniformCostSearch(problem):
           # if the child has not been visited
           if(child.getCurrentState() not in explored):
               frontier.push(child, child.getTotalPathCost())
+              explored[child.getCurrentState()] = "True"
   #util.raiseNotDefined()
 
 def nullHeuristic(state, problem=None):
